@@ -1,0 +1,54 @@
+{% extends "TwitterBootstrapBundle::layout.html.twig" %}
+{% block javascripts %}
+    {{ parent() }}
+<script src="{{ asset('bundles/acmegame/js/common.js') }}" type="text/javascript"></script>
+{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+<style>
+        .card{
+            width:110px;
+            height:140px;
+            margin:0px auto;
+            margin-top:50px;
+            display: inline-block;
+        }
+        .back,
+        .front{
+            width:100px;
+            height:136px;
+            position:absolute;
+            cursor:pointer;
+        }
+        .showcard .back{
+            width: 0px;
+            margin-left: 55px;
+        }
+    </style>
+</head>
+
+{% endblock %}
+{% block title %}{{user.game.keyGame }} - {{user.username}}{% endblock %}
+{% block container %}
+<div class="hero-unit">
+    <h1>{{user.game.keyGame }} - {{user.username}}</h1>
+<ul id="carts" data-status="{{path('game_status')}}">
+{% for key, status in user.game.statusCards %}
+        <li id="{{ key }}" class="card {% if status %}showcard{% endif %}">
+            <img class="back" src="{{ asset('bundles/acmegame/images/15686_wpm_lowres.png') }}"/>
+    {% if status %}
+            <img class="front" src="{{ asset(user.game.cards[key].path) }}"/>
+        {% else %}
+            <img class="front" src="{{ asset('bundles/acmegame/images/15686_wpm_lowres.png') }}"/>
+    {% endif %}
+        </li>
+{% endfor %}
+</ul>
+</div>
+<dl id="users">
+    {%for key, value in users%}
+  <dt>{{value.username}}</dt>
+  <dd>{{value.ip}}</dd>
+    {% endfor %}
+</dl>
+{% endblock %}

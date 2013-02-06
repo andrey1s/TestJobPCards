@@ -1,0 +1,7 @@
+        <form {{ form_enctype(form)}} id="archer_statistic" class="form-horizontal well" method="POST" action="{{ path('game_index') }}">
+            {{ form_rest(form) }}
+            <label></label>
+            <div class=form-field>
+                <input type="reset" class="btn"> <input type="submit" class="btn btn-primary">
+            </div>
+        </form>
