@@ -24,6 +24,10 @@
             width: 0px;
             margin-left: 55px;
         }
+        .span4 ul{
+            height: 300px;
+            overflow-y: auto;
+        }
     </style>
 </head>
 
@@ -32,23 +36,35 @@
 {% block container %}
 <div class="hero-unit">
     <h1>{{user.game.keyGame }} - {{user.username}}</h1>
-<ul id="carts" data-status="{{path('game_status')}}">
+    <ul id="carts" data-status="{{path('game_status')}}">
 {% for key, status in user.game.statusCards %}
-        <li id="{{ key }}" class="card {% if status %}showcard{% endif %}">
-            <img class="back" src="{{ asset('bundles/acmegame/images/15686_wpm_lowres.png') }}"/>
+            <li id="{{ key }}" class="card {% if status %}showcard{% endif %}">
+                <img class="back" src="{{ asset('bundles/acmegame/images/15686_wpm_lowres.png') }}"/>
     {% if status %}
-            <img class="front" src="{{ asset(user.game.cards[key].path) }}"/>
+                <img class="front" src="{{ asset(user.game.cards[key].path) }}"/>
         {% else %}
-            <img class="front" src="{{ asset('bundles/acmegame/images/15686_wpm_lowres.png') }}"/>
+                <img class="front" src="{{ asset('bundles/acmegame/images/15686_wpm_lowres.png') }}"/>
     {% endif %}
-        </li>
+            </li>
 {% endfor %}
-</ul>
-</div>
-<dl id="users">
-    {%for key, value in users%}
-  <dt>{{value.username}}</dt>
-  <dd>{{value.ip}}</dd>
-    {% endfor %}
-</dl>
+        </ul>
+    </div>
+    <div class="row">
+        <div class="span4">
+            <h2>Users</h2>
+            <ul id="users">
+            {%for key, value in users%}
+                    <li data-id="{{key}}" class="alert alert-success">{{value.username}} - {{value.ip}}</li>
+            {% endfor %}
+                </ul>
+            </div>
+            <div class="span4">
+                <h2>Logs</h2>
+                <ul id="log">
+                    {% for key, log in logs %}
+                    <li class="alert">{{log.user.username}} - {{log.actions}}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
 {% endblock %}

@@ -5,7 +5,6 @@ namespace Acme\GameBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\ManyToMany;
 use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\ORM\Mapping\JoinTable;
 
 /**
  * Game
@@ -52,6 +51,11 @@ class Game
      * @ORM\Column(name="date", type="datetime")
      */
     private $date;
+
+    /**
+     *
+     * @var array
+     */
     private $paths = array();
 
     public function __construct($name, $cards)
@@ -147,6 +151,10 @@ class Game
         return $this->getCards()->get($id);
     }
 
+    /**
+     * get Card Paths
+     * @return array
+     */
     public function getPaths()
     {
         if (count($this->paths)) {
@@ -158,8 +166,16 @@ class Game
         }
         return $this->paths;
     }
-    public function getPath($id){
-        if(isset($this->paths[$id])){
+
+    /**
+     * get Card Patch by Id
+     *
+     * @param integer $id
+     * @return boolean|string
+     */
+    public function getPath($id)
+    {
+        if (isset($this->paths[$id])) {
             return $this->paths[$id];
         }
 

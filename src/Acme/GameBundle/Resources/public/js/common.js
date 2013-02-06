@@ -7,7 +7,6 @@ $(document).ready(function() {
     $('#carts').click(function(event) {
         var id = $(event.target).parent().attr('id');
         var url = self.location.href;
-        console.log(id);
         $.ajax({
             url: url,
             data: {'id': id},
@@ -24,21 +23,38 @@ $(document).ready(function() {
         }).done(function(data) {
             update(data);
         });
-    }, 1000);
+    }, 5000);
     function update(data) {
+        updateUsers(data.users);
         if (data.status) {
-            if (typeof data.users !== "undefined") {
-                updateUsers(data.users)
-            }
+            updateLog(data.log);
             changeStatus(data)
         }
     }
+    function updateLog(log) {
+        $('#log').prepend('<li class="alert alert-success">' + log.username + ' - ' + log.action + '</li>');
+        setTimeout(function() {
+            $("#log>li").removeClass('alert-success');
+        }, 500);
+    }
     function updateUsers(users) {
+        if(typeof users === 'undefined'){
+            return;
+        }
+        $('#users li').each(function(index, value) {
+            var id = $(value).data('id');
+            if(typeof users[id] === 'undefined'){
+                $(value).remove();
+            }else{
+                delete users[id];
+            }
+        });
         var html = '';
         for (var i in users) {
-            html += '<dt>' + users[i].username + '</dt><dd>' + users[i].ip + '</dd>';
+
+            html += '<li class="alert alert-success" data-id="'+i+'">' + users[i].username + ' - ' + users[i].ip + '</li>';
         }
-        $('#users').html(html);
+        $('#users').append(html);
     }
 
     function changeStatus(data) {
@@ -47,7 +63,7 @@ $(document).ready(function() {
             var parent = $(el).parent();
             if (data.data[i] !== parent.hasClass('showcard')) {
                 if (data.data[i] && typeof data.path[i] === 'string') {
-                    $("#carts > " + "#" + i + ' .front').attr('src',data.path[i]);
+                    $("#carts > " + "#" + i + ' .front').attr('src', data.path[i]);
                 }
                 var off = 'back';
                 if (data.data[i]) {
