@@ -33,7 +33,7 @@ class DefaultController extends Controller
             if ($form->isValid()) {
                 $user = false;
                 $session = $this->getRequest()->getSession();
-                $em = $this->getDoctrine()->getEntityManager();
+                $em = $this->getDoctrine()->getManager();
                 $game = $em->getRepository('AcmeGameBundle:Game')
                         ->findOneBy(array('keyGame' => $obj->getGame()));
                 /* @var $memcache \Memcache */
@@ -94,10 +94,12 @@ class DefaultController extends Controller
         $user = $session->get('user');
         $id = $this->getRequest()->get('id', false);
         $gameId = $user->getGame()->getId();
-        $em = $this->getDoctrine()
-                ->getEntityManager();
+        /* @var $em Doctrine\ORM\EntityManager */
+        $em = $this->getDoctrine()->getManager();
         if ($id !== false) {
             $keyGame = uniqid();
+            $game = $em->find('AcmeGameBundle:Game', $gameId);
+            $game->triggerStatusCard($id);
             $user->getGame()->triggerStatusCard($id);
             $path = array($id => $user->getGame()->getPath($id));
             $entityLog = new Entity\Log('change status card ' . $id, $em->find('AcmeGameBundle:GUser', $user->getId()));
@@ -160,7 +162,7 @@ class DefaultController extends Controller
             $data['data'] = $status;
             $data['log'] = $memcache->get($gameId . ':' . $keyGame . ':' . self::MEMCACHE_KEY_LOG);
         } else {
-            $em = $this->getDoctrine()->getEntityManager();
+            $em = $this->getDoctrine()->getManager();
             if (!$keyGame) {
                 $keyGame = uniqid();
                 $memcache->set($gameId . ':' . self::MEMCACHE_KEY_GAME, $keyGame);
