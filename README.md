@@ -2,21 +2,21 @@ TestJobPCards
 =============
 
 ### Set
-Need to implement a web-based application that simulates a network game. Early in the game, two or more users to enter the same key in the field provided and their names in the game (a separate field for the name).
-After entering the key on each user's screen displays a set of 10 random cards. Each card has two states: "open" and "closed". Random set of cards assigned to the entered key. Different card users may be repeated. When the user clicks on the map, it should change its state - over. This change should be seen every user in the game. In addition, you want to show ip-addresses of all users involved in the game this time and their names.
-Need to keep a log of all actions performed with user IDs.
-Coup card you want to animate by means of CSS with JS.
-Texture maps and shirts have to find yourself.
-Offer the most effective methods of storing data on the server.
-As a result of the job from you, we want to get a reference to a Web application in which you can test the game and source archives.
-Period of execution of test task is 3 days of receipt.
+- Need to implement a web-based application that simulates a network game. Early in the game, two or more users to enter the same key in the field provided and their names in the game (a separate field for the name).
+- After entering the key on each user's screen displays a set of 10 random cards. Each card has two states: "open" and "closed". Random set of cards assigned to the entered key. Different card users may be repeated. When the user clicks on the map, it should change its state - over. This change should be seen every user in the game. In addition, you want to show ip-addresses of all users involved in the game this time and their names.
+- Need to keep a log of all actions performed with user IDs.
+- Coup card you want to animate by means of CSS with JS.
+- Texture maps and shirts have to find yourself.
+- Offer the most effective methods of storing data on the server.
+- As a result of the job from you, we want to get a reference to a Web application in which you can test the game and source archives.
+- Period of execution of test task is 3 days of receipt.
 
 ### Results
-done in about 16 hours
-used to continuously update JS function setInterval, but in the working draft is not recommended to look towards better NodeJS, not used since before that did not work with NodeJS
-use memcache to cache results, connect to the database in the main to update / write
-used for design TwitterBootstrap
-also the working draft to analyze in more detail the architecture of the application, the application is made only for testing, and the time was limited
+1. done in about 16 hours
+2. used to continuously update JS function setInterval, but in the working draft is not recommended to look towards better NodeJS, not used since before that did not work with NodeJS
+3. use memcache to cache results, connect to the database in the main to update / write
+4. used for design TwitterBootstrap
+5. also the working draft to analyze in more detail the architecture of the application, the application is made only for testing, and the time was limited
 
 <!--
 ###Задание
