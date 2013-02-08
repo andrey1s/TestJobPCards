@@ -12,11 +12,11 @@ As a result of the job from you, we want to get a reference to a Web application
 Period of execution of test task is 3 days of receipt.
 
 ### Results
-done in about 16 hours
-used to continuously update JS function setInterval, but in the working draft is not recommended to look towards better NodeJS, not used since before that did not work with NodeJS
-use memcache to cache results, connect to the database in the main to update / write
-used for design TwitterBootstrap
-also the working draft to analyze in more detail the architecture of the application, the application is made only for testing, and the time was limited
+1. done in about 16 hours
+2. used to continuously update JS function setInterval, but in the working draft is not recommended to look towards better NodeJS, not used since before that did not work with NodeJS
+3. use memcache to cache results, connect to the database in the main to update / write
+4. used for design TwitterBootstrap
+5. also the working draft to analyze in more detail the architecture of the application, the application is made only for testing, and the time was limited
 
 <!--
 ###Задание
