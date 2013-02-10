@@ -12,11 +12,19 @@ TestJobPCards
 - Period of execution of test task is 3 days of receipt.
 
 ### Results
+v 1.0.0
 1. done in about 16 hours
 2. used to continuously update JS function setInterval, but in the working draft is not recommended to look towards better NodeJS, not used since before that did not work with NodeJS
 3. use memcache to cache results, connect to the database in the main to update / write
 4. used for design TwitterBootstrap
 5. also the working draft to analyze in more detail the architecture of the application, the application is made only for testing, and the time was limited
+
+v 2.0.0
+1. done in about plus ~8 hours
+2. add nodejs
+3. reduce server requests
+4. use socket.io
+5. memcached used for authentication, the output of users online and check for back-end
 
 <!--
 ###Задание
