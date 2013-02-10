@@ -29,15 +29,17 @@ $(document).ready(function() {
     var hide = {width: '0px', height: '' + height + 'px', marginLeft: '' + margin + 'px', opacity: '0.5'};
     var showCard = {width: '' + width + 'px', height: '' + height + 'px', marginLeft: '0px', opacity: '1'};
     $('#carts').click(function(event) {
-        var id = $(event.target).parent().attr('id');
-        var url = self.location.href;
-        $.ajax({
-            url: url,
-            data: {'id': id.split('-')[1]},
-            dataType: 'json'
-        }).done(function(data) {
-            game.emit('click', {game: gameId, id: data.id, path: data.path, user: userName});
-        });
+        var id = $(event.target).parent('.card').attr('id');
+        if (id) {
+            var url = self.location.href;
+            $.ajax({
+                url: url,
+                data: {'id': id.split('-')[1]},
+                dataType: 'json'
+            }).done(function(data) {
+                game.emit('click', {game: gameId, id: data.id, path: data.path, user: userName});
+            });
+        }
     });
     /**
      * change status card
