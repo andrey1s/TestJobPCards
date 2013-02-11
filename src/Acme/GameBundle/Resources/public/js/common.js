@@ -37,7 +37,7 @@ $(document).ready(function() {
                 data: {'id': id.split('-')[1]},
                 dataType: 'json'
             }).done(function(data) {
-                game.emit('click', {game: gameId, id: data.id, path: data.path, user: userName});
+                game.emit('click', {game: gameId, id: data.id, path: data.path, user: userId});
             });
         }
     });
